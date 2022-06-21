@@ -45,9 +45,12 @@ int8_t bte_wind_tunnel_motor::set_range(uint16_t min_motor,uint16_t max_motor)
 int8_t bte_wind_tunnel_motor::set_pwm(uint16_t pwm_int)
 {
 	// fails if pwm > max or pwm > min or motor is off
-  	if( (pwm_int>_max_motor) || (pwm_int<_min_motor) || (_power_flag==0) )
+	if (_power_flag == 0){
+		return -3;
+	}
+  	if( (pwm_int>_max_motor) || (pwm_int<_min_motor) )
   	{
-  		return -1;
+  		return -2;
   	}
   	
   	_pwm_int = pwm_int;
@@ -60,9 +63,12 @@ int8_t bte_wind_tunnel_motor::set_thrust_level(float thrust_level)
 {
 	float pwm_tmp;
 	
+	if (_power_flag == 0){
+		return -3;
+	}
 	if(thrust_level>1.0 || thrust_level<0.0)
 	{
-		return -1;
+		return -2;
 	}
 
 	pwm_tmp = (float)_min_motor + thrust_level * ((float)_max_motor - (float)_min_motor);

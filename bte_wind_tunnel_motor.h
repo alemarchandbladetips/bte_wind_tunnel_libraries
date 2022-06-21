@@ -57,10 +57,10 @@ class bte_wind_tunnel_motor{
        
        void power_off(void);
 	  /**
-       * \fn void power_off(void
+       * \fn void power_off(void)
 	   * \brief power off the motor without disabling it
        */
-       
+	   
       uint16_t get_current_pwm(void);
       /**
        * \fn get_current_pwm(void)
