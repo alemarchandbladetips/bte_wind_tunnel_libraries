@@ -21,7 +21,7 @@ class bte_wind_tunnel{
        * \fn int8_t set_max_cell_power(float max_cell_power)
 	   * \brief Set the maximum power for all individual cells of the wind tunnel
        * @param (float)max_cell_power maximum power for all cells individually (W)
-       * @return -1 if the function fails, 0 otherwise.
+       * @return -1 if the function fails, 0 otherwise
        */
 	  int8_t set_max_cell_power(float max_cell_power);
 	  
