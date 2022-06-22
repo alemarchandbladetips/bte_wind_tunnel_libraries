@@ -21,7 +21,7 @@ int8_t bte_wind_tunnel_cell::set_all_params(uint8_t offset, Adafruit_PWMServoDri
 int8_t bte_wind_tunnel_cell::power_individual_motor(uint8_t motor_position, float thrust_level)
 {
 
-	if(1)// (get_power_in_cell() - _motor[motor_position].get_current_power() + get_power_from_pwm(pwm_int)) < _max_power )
+	if( (get_power_in_cell() - _motor[motor_position].get_current_power() + get_power_from_pwm(_motor[motor_position].get_pwm_from_thrust_level(thrust_level))) < _max_power )
 	{
 		return _motor[motor_position].set_thrust_level(thrust_level);
 	}
@@ -49,7 +49,7 @@ int8_t bte_wind_tunnel_cell::get_power_in_cell(void)
 int8_t bte_wind_tunnel_cell::power_rank0_motors(float thrust_level)
 {
 	
-	if(1)// (get_power_in_cell() - _motor[0].get_current_power() + get_power_from_pwm(pwm_int)) < _max_power )
+	if( (get_power_in_cell() - _motor[0].get_current_power() + get_power_from_pwm(_motor[0].get_pwm_from_thrust_level(thrust_level))) < _max_power )
 	{
 		return _motor[0].set_thrust_level(thrust_level);
 	}
@@ -64,7 +64,7 @@ int8_t bte_wind_tunnel_cell::power_rank0_motors(float thrust_level)
 int8_t bte_wind_tunnel_cell::power_rank1_motors(float thrust_level)
 {
 	
-	if(1)// (get_power_in_cell() - _motor[0].get_current_power() - _motor[1].get_current_power() - _motor[2].get_current_power() + 3 * get_power_from_pwm(pwm_int)) < _max_power )
+	if((get_power_in_cell() - _motor[0].get_current_power() - _motor[1].get_current_power() - _motor[2].get_current_power() + 3 * get_power_from_pwm(_motor[2].get_pwm_from_thrust_level(thrust_level))) < _max_power )
 	{
 		_motor[0].set_thrust_level(thrust_level);
 		_motor[1].set_thrust_level(thrust_level);
@@ -81,8 +81,7 @@ int8_t bte_wind_tunnel_cell::power_rank1_motors(float thrust_level)
 //powers all the motors
 int8_t bte_wind_tunnel_cell::power_rank2_motors(float thrust_level)
 {
-	
-	if(1)// 6 * get_power_from_pwm(pwm_int) < _max_power )
+	if( 6 * get_power_from_pwm(_motor[2].get_pwm_from_thrust_level(thrust_level)) < _max_power )
 	{
 		_motor[0].set_thrust_level(thrust_level);
 		_motor[1].set_thrust_level(thrust_level);
@@ -90,26 +89,6 @@ int8_t bte_wind_tunnel_cell::power_rank2_motors(float thrust_level)
 		_motor[3].set_thrust_level(thrust_level);
 		_motor[4].set_thrust_level(thrust_level);
 		_motor[5].set_thrust_level(thrust_level);
-		return 0;
-	}
-	else
-	{
-		return -1;
-	}
-}
-
-
-int8_t bte_wind_tunnel_cell::power_individually(uint16_t pwm_int1, uint16_t pwm_int2, uint16_t pwm_int3, uint16_t pwm_int4, uint16_t pwm_int5, uint16_t pwm_int6)
-{
-	
-	if (get_power_from_pwm(pwm_int1) + get_power_from_pwm(pwm_int2) + get_power_from_pwm(pwm_int3) + get_power_from_pwm(pwm_int4) + get_power_from_pwm(pwm_int5) + get_power_from_pwm(pwm_int6) < _max_power)
-	{
-		_motor[0].set_pwm(pwm_int1);
-		_motor[1].set_pwm(pwm_int2);
-		_motor[2].set_pwm(pwm_int3);
-		_motor[3].set_pwm(pwm_int4);
-		_motor[4].set_pwm(pwm_int5);
-		_motor[5].set_pwm(pwm_int6);
 		return 0;
 	}
 	else

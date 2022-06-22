@@ -86,6 +86,8 @@ class bte_wind_tunnel_motor{
        * \fn disable(void)
 	   * \brief power off and disable the motor (disabled by default). Use of enable will be required before applying pwm to the motor
        */
+       
+       uint16_t get_pwm_from_thrust_level(float thrust_level);
   
 
   private:

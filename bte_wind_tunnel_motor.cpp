@@ -1,6 +1,6 @@
 #include "bte_wind_tunnel_motor.h"
 
-#define POWER_FROM_PWM_A0 -1000.0
+#define POWER_FROM_PWM_A0 -1500.0
 #define POWER_FROM_PWM_A1 1.5
 #define POWER_FROM_PWM_A2 0.0
 
@@ -71,7 +71,7 @@ int8_t bte_wind_tunnel_motor::set_thrust_level(float thrust_level)
 		return -2;
 	}
 
-	pwm_tmp = (float)_min_motor + thrust_level * ((float)_max_motor - (float)_min_motor);
+	pwm_tmp = get_pwm_from_thrust_level(thrust_level);
 
   	return set_pwm((uint16_t)pwm_tmp);
 }
@@ -106,6 +106,14 @@ void bte_wind_tunnel_motor::disable(void)
 	_power_flag = 0;
 }
 
+uint16_t bte_wind_tunnel_motor::get_pwm_from_thrust_level(float thrust_level)
+{
+	float pwm_tmp;
+	
+	pwm_tmp = (float)_min_motor + thrust_level * ((float)_max_motor - (float)_min_motor);
+
+  	return (uint16_t)pwm_tmp;
+}
 
 // Function outside of the class
 
@@ -117,3 +125,4 @@ float get_power_from_pwm(uint16_t pwm_int)
 
   	return power;
 }
+

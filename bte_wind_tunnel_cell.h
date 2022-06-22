@@ -17,7 +17,6 @@ public:
 	int8_t get_power_in_cell(void);
 	int8_t get_current_power(void);
 	int8_t power_individual_motor(uint8_t motor_position,float thrust_level);
-	int8_t power_individually(uint16_t pwm_int1, uint16_t pwm_int2, uint16_t pwm_int3, uint16_t pwm_int4, uint16_t pwm_int5, uint16_t pwm_int6);
 	void enable(void);
 	void disable(void);
 	void power_off_all_motors(void);
