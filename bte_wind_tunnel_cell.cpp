@@ -46,12 +46,12 @@ int8_t bte_wind_tunnel_cell::get_power_in_cell(void)
 
 
 //powers the inner motor
-int8_t bte_wind_tunnel_cell::power_rank0_motors(uint16_t pwm_int)
+int8_t bte_wind_tunnel_cell::power_rank0_motors(float thrust_level)
 {
 	
-	if( (get_power_in_cell() - _motor[0].get_current_power() + get_power_from_pwm(pwm_int)) < _max_power )
+	if(1)// (get_power_in_cell() - _motor[0].get_current_power() + get_power_from_pwm(pwm_int)) < _max_power )
 	{
-		return _motor[0].set_pwm(pwm_int);
+		return _motor[0].set_thrust_level(thrust_level);
 	}
 	else
 	{
@@ -61,14 +61,14 @@ int8_t bte_wind_tunnel_cell::power_rank0_motors(uint16_t pwm_int)
 
 
 //powers the inner and middle motors
-int8_t bte_wind_tunnel_cell::power_rank1_motors(uint16_t pwm_int)
+int8_t bte_wind_tunnel_cell::power_rank1_motors(float thrust_level)
 {
 	
-	if( (get_power_in_cell() - _motor[0].get_current_power() - _motor[1].get_current_power() - _motor[2].get_current_power() + 3 * get_power_from_pwm(pwm_int)) < _max_power )
+	if(1)// (get_power_in_cell() - _motor[0].get_current_power() - _motor[1].get_current_power() - _motor[2].get_current_power() + 3 * get_power_from_pwm(pwm_int)) < _max_power )
 	{
-		_motor[0].set_pwm(pwm_int);
-		_motor[1].set_pwm(pwm_int);
-		_motor[2].set_pwm(pwm_int);
+		_motor[0].set_thrust_level(thrust_level);
+		_motor[1].set_thrust_level(thrust_level);
+		_motor[2].set_thrust_level(thrust_level);
 		return 0;
 	}
 	else
@@ -79,17 +79,17 @@ int8_t bte_wind_tunnel_cell::power_rank1_motors(uint16_t pwm_int)
 
 
 //powers all the motors
-int8_t bte_wind_tunnel_cell::power_rank2_motors(uint16_t pwm_int)
+int8_t bte_wind_tunnel_cell::power_rank2_motors(float thrust_level)
 {
 	
-	if( 6 * get_power_from_pwm(pwm_int) < _max_power )
+	if(1)// 6 * get_power_from_pwm(pwm_int) < _max_power )
 	{
-		_motor[0].set_pwm(pwm_int);
-		_motor[1].set_pwm(pwm_int);
-		_motor[2].set_pwm(pwm_int);
-		_motor[3].set_pwm(pwm_int);
-		_motor[4].set_pwm(pwm_int);
-		_motor[5].set_pwm(pwm_int);
+		_motor[0].set_thrust_level(thrust_level);
+		_motor[1].set_thrust_level(thrust_level);
+		_motor[2].set_thrust_level(thrust_level);
+		_motor[3].set_thrust_level(thrust_level);
+		_motor[4].set_thrust_level(thrust_level);
+		_motor[5].set_thrust_level(thrust_level);
 		return 0;
 	}
 	else

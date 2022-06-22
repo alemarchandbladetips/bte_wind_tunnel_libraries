@@ -53,6 +53,18 @@ int8_t bte_wind_tunnel::set_max_cell_power(float max_cell_power)
 	  
 int8_t bte_wind_tunnel::power_individual_motor(uint8_t cell_number, uint8_t motor_number, float thrust_level)
 {
+	if ( (cell_number > 6) || (motor_number > 5) )
+	{
+		return -4;
+	}
+	if( (cell_number==6) )
+	{
+		if(motor_number!=0)
+		{
+			return -4;
+		}
+		return _central_motor.set_thrust_level(thrust_level);
+	}
 	return _cell[cell_number].power_individual_motor(motor_number,thrust_level);
 }
 	  
