@@ -4,12 +4,24 @@
 #define DEFAULT_MAX_CELL_POWER 2750.0
 #define POWER_SUPPLIER_MAX_POWER 3000.0
 
-#define MAX_PWM 2000
+#define MAX_PWM 1200
 #define MIN_PWM 1000
 
  
 bte_wind_tunnel::bte_wind_tunnel()
 {
+  	_pwm_driver0.begin();
+  	_pwm_driver0.setOscillatorFrequency(27000000);
+  	_pwm_driver0.setPWMFreq(50); 
+  
+    _pwm_driver1.begin();
+  	_pwm_driver1.setOscillatorFrequency(27000000);
+  	_pwm_driver1.setPWMFreq(50); 
+  
+	_pwm_driver2.begin();
+  	_pwm_driver2.setOscillatorFrequency(27000000);
+  	_pwm_driver2.setPWMFreq(50); 
+  
 	_cell[0].set_all_params(0,&_pwm_driver0,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
 	_cell[1].set_all_params(8,&_pwm_driver0,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
 	_cell[2].set_all_params(0,&_pwm_driver1,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
@@ -95,7 +107,7 @@ int8_t bte_wind_tunnel::power_rank2_motors(float thrust_level)
 	return retval;
 }
 	  
-void bte_wind_tunnel::power_off_all_motors()
+void bte_wind_tunnel::power_off_all_motors(void)
 {
 	uint8_t i;
 
@@ -106,7 +118,7 @@ void bte_wind_tunnel::power_off_all_motors()
 	_central_motor.power_off();
 }
 	  
-void bte_wind_tunnel::enable()
+void bte_wind_tunnel::enable(void)
 {
 	uint8_t i;
 	
@@ -117,7 +129,7 @@ void bte_wind_tunnel::enable()
 	_central_motor.enable();
 }
 	  
-void bte_wind_tunnel::disable()
+void bte_wind_tunnel::disable(void)
 {
 	uint8_t i;
 	

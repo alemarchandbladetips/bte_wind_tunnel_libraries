@@ -1,4 +1,6 @@
-
+#ifndef BTE_WIND_TUNNEL_H_
+  #define BTE_WIND_TUNNEL_H_
+  
 #include <Arduino.h>
 #include "bte_wind_tunnel_cell.h"
 
@@ -64,19 +66,19 @@ class bte_wind_tunnel{
 	   * \fn void power_off_all_motors()
        * \brief power off all motors, do not disable the motors.
        */
-	  void power_off_all_motors();
+	  void power_off_all_motors(void);
 	  
 	  /**
 	   * \fn void enable()
        * \brief enable all motors. Must be called before using the wind tunnel (disable by default)
        */
-	  void enable();
+	  void enable(void);
 	  
 	  /**
 	   * \fn void disable()
        * \brief disable all motors. Enable must be called if you want to use motor after.
        */
-	  void disable();
+	  void disable(void);
 	  
 	  /**
 	   * \fn float get_current_cell_power(uint8_t cell_number)
@@ -91,7 +93,7 @@ class bte_wind_tunnel{
        * \brief Set the thrust level for the motors (37 motors) of the inner and second and third circle of the wind tunnel
        * @return (float)power the current power of all the cells (W)
        */
-	  float get_current_total_power();
+	  float get_current_total_power(void);
   
 
   private:
@@ -103,3 +105,5 @@ class bte_wind_tunnel{
 	  uint8_t _enable_flag = 0;
   
   };
+
+#endif

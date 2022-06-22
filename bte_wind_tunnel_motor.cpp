@@ -72,7 +72,7 @@ int8_t bte_wind_tunnel_motor::set_thrust_level(float thrust_level)
 	}
 
 	pwm_tmp = (float)_min_motor + thrust_level * ((float)_max_motor - (float)_min_motor);
-	
+
   	return set_pwm((uint16_t)pwm_tmp);
 }
 
@@ -97,6 +97,8 @@ void bte_wind_tunnel_motor::power_off(void)
 void bte_wind_tunnel_motor::enable(void)
 {
 	_power_flag = 1;
+	_pwm_driver->writeMicroseconds(_motor_position,_min_motor);
+	delay(100);
 }
 
 void bte_wind_tunnel_motor::disable(void)
