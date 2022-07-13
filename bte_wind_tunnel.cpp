@@ -22,13 +22,13 @@ bte_wind_tunnel::bte_wind_tunnel()
   	_pwm_driver2.setOscillatorFrequency(27000000);
   	_pwm_driver2.setPWMFreq(50); 
   
-	_cell[0].set_all_params(0,&_pwm_driver0,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
-	_cell[1].set_all_params(8,&_pwm_driver0,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
-	_cell[2].set_all_params(0,&_pwm_driver1,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
-	_cell[3].set_all_params(8,&_pwm_driver1,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
-	_cell[4].set_all_params(0,&_pwm_driver2,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
-	_cell[5].set_all_params(8,&_pwm_driver2,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
-	_central_motor.set_all_params(15,&_pwm_driver0,MIN_PWM,MAX_PWM);
+	_cell[0].set_all_params(8,&_pwm_driver0,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
+	_cell[1].set_all_params(0,&_pwm_driver0,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
+	_cell[2].set_all_params(8,&_pwm_driver1,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
+	_cell[3].set_all_params(0,&_pwm_driver1,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
+	_cell[4].set_all_params(8,&_pwm_driver2,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
+	_cell[5].set_all_params(2,&_pwm_driver2,MIN_PWM,MAX_PWM,DEFAULT_MAX_CELL_POWER);
+	_central_motor.set_all_params(15,&_pwm_driver1,MIN_PWM,MAX_PWM);
 	_enable_flag = 0;
 }
 	  

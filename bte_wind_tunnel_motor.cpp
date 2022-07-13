@@ -98,6 +98,7 @@ void bte_wind_tunnel_motor::enable(void)
 {
 	_power_flag = 1;
 	_pwm_driver->writeMicroseconds(_motor_position,_min_motor);
+	delay(10);
 }
 
 void bte_wind_tunnel_motor::disable(void)

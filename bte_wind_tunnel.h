@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "bte_wind_tunnel_cell.h"
 
-#define THRUST_IDDLE 0.0
+#define THRUST_IDDLE 0.6
 //0.46
 
 class bte_wind_tunnel{
